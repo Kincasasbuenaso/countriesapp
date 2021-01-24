@@ -1,0 +1,36 @@
+<div class="header bg-header">
+    <div class="container-page container-min">
+        <div class="row pd-top-header">
+            <div class="col-md-12 pb-4">
+                <p class="title-header">Find any <span>country</span> <br> 
+                in the world.</p>
+            </div>
+            <div class="col-md-12">
+                <form class="col-lg-8 col-md-8 col-sm-12 col-xs-12  padding_0">
+                    <div class="input-group elevation">
+                        <input 
+                            class="form-control w65 hInput" 
+                            type="text" 
+                            placeholder="Search country"
+                            (keyup)="search($event.target.value)"
+                            #inputSearch
+                            aria-label="Search">
+                        <select 
+                            class="form-select" 
+                            aria-label="All" 
+                            #selectOption
+                            (change)="selectedOption(selectOption.value)">
+                            <option 
+                                value="{{option.value}}" 
+                                *ngFor="let option of searchOptions">{{option.name}}</option>
+                        </select>
+                        <button class="btn btn-search" (click)="btnSearch($event)"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div *ngIf="showAlert">
+                        <p class="text-danger">*Debes ingresar un termino de busqueda</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

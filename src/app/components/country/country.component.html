@@ -1,0 +1,133 @@
+<div class="container-page">
+    <div class="row" *ngIf="(Africa.length > 0 || America.length > 0 || Asia.length > 0 || Europa.length > 0 || Oceania.length > 0 )">
+        <div class="w20" *ngIf="optionView === 'all' || optionView === 'africa' || (optionView === 'fav' && Africa.length > 0)"> 
+          <p class="title-region">Africa</p>
+          <div class="alert alert-info size-text" role="alert" *ngIf="Africa.length == 0">
+            Search not found
+          </div>
+          <ol *ngIf="Africa.length > 0">
+              <li *ngFor="let pais of Africa">
+                  <a class="country-item" (click)="open(content,pais)">
+                    <div class="country-flag"
+                      style="background-image: url('{{pais.flag}}')">
+                    </div>
+                    <span class="country-name">{{pais.name}}</span>
+                    &nbsp; <i class="fas fa-star" *ngIf="pais.favorite"></i>
+                  </a>
+              </li>
+          </ol>
+
+        </div>
+        <div class="w20" *ngIf="optionView === 'all' || optionView === 'americas' || (optionView === 'fav' && America.length > 0)"> 
+          <p class="title-region">America</p>
+          <div class="alert alert-info size-text" role="alert" *ngIf="America.length == 0">
+            Search not found
+          </div>
+          <ol *ngIf="America.length > 0">
+              <li *ngFor="let pais of America">
+                  <a class="country-item" (click)="open(content,pais)">
+                    <div class="country-flag"
+                      style="background-image: url('{{pais.flag}}')">
+                    </div>
+                    <span class="country-name">{{pais.name}}</span>
+                    &nbsp; <i class="fas fa-star" *ngIf="pais.favorite"></i>
+                  </a>
+              </li>
+          </ol>
+        </div>
+        <div class="w20" *ngIf="optionView === 'all' || optionView === 'asia' || (optionView === 'fav' && Asia.length > 0)"> 
+          <p class="title-region">Asia</p>
+          <div class="alert alert-info size-text" role="alert" *ngIf="Asia.length == 0">
+            Search not found
+          </div>
+          <ol *ngIf="Asia.length > 0">
+              <li *ngFor="let pais of Asia">
+                  <a class="country-item" (click)="open(content,pais)">
+                    <div class="country-flag"
+                      style="background-image: url('{{pais.flag}}')">
+                    </div>
+                    <span class="country-name">{{pais.name}}</span>
+                    &nbsp; <i class="fas fa-star" *ngIf="pais.favorite"></i>
+                  </a>
+              </li>
+          </ol>
+        </div>
+        <div class="w20" *ngIf="optionView === 'all' || optionView === 'europe' || (optionView === 'fav' && Europa.length > 0)"> 
+          <p class="title-region">Europa</p>
+          <div class="alert alert-info size-text" role="alert" *ngIf="Europa.length == 0">
+            Search not found
+          </div>
+          <ol *ngIf="Europa.length > 0">
+              <li *ngFor="let pais of Europa">
+                  <a class="country-item" (click)="open(content,pais)">
+                    <div class="country-flag"
+                      style="background-image: url('{{pais.flag}}')">
+                    </div>
+                    <span class="country-name">{{pais.name}}</span>
+                    &nbsp; <i class="fas fa-star" *ngIf="pais.favorite"></i>
+                  </a>
+              </li>
+          </ol>
+        </div>
+        <div class="w20" *ngIf="optionView === 'all' || optionView === 'oceania' || (optionView === 'fav' && Oceania.length > 0)"> 
+          <p class="title-region">Oceania</p>
+          <div class="alert alert-info size-text" role="alert" *ngIf="Oceania.length == 0">
+            Search not found
+          </div>
+          <ol *ngIf="Oceania.length > 0">
+              <li *ngFor="let pais of Oceania">
+                  <a class="country-item" (click)="open(content,pais)">
+                    <div class="country-flag"
+                      style="background-image: url('{{pais.flag}}')">
+                    </div>
+                    <span class="country-name">{{pais.name}}</span>
+                    &nbsp; <i class="fas fa-star" *ngIf="pais.favorite"></i>
+                  </a>
+              </li>
+          </ol>
+        </div>
+        <div class="w20"> <p class="title-region"></p>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="(Africa.length == 0 && America.length == 0 && Asia.length == 0 && Europa.length == 0 && Oceania.length == 0)">
+      <div class="col-md-12 col-xs-12 col-lg-12 p-5">
+          <p class="notFound text-center">No result found</p>
+      </div>
+    </div>
+</div>
+
+
+<!-- ********************** MODAL COUNTRY ************************  -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        {{countryDetail.name}} 
+        <i 
+          class="far fa-star" 
+          *ngIf="!countryDetail.isFavorite"
+          (click)="favorite(countryDetail.alpha3Code, true)"></i>
+
+        <i 
+          class="fas fa-star"
+          *ngIf="countryDetail.isFavorite"
+          (click)="favorite(countryDetail.alpha3Code, false)"></i>
+    </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <p class="details-country">
+            <strong>Region:</strong> {{countryDetail.region}}  <br>
+            <strong>Population:</strong> {{countryDetail.population}}  <br>
+            <strong>Capital:</strong> {{countryDetail.capital}}  <br>
+            <strong>Currency:</strong> {{countryDetail.currency}}  <br>
+            <strong>Language:</strong> {{countryDetail.language}}  <br>
+            <strong>Border Countries:</strong> {{countryDetail.countries}}  <br>
+            <strong>Flag:</strong> <br>
+            <img [src]="countryDetail.flag" [alt]="countryDetail.name" class="flag-modal"/>
+        </p>
+    </div>
+  </ng-template>
+<!-- ********************** MODAL COUNTRY ************************  -->

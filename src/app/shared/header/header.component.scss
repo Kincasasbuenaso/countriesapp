@@ -1,0 +1,43 @@
+.bg-header{
+    background-image: url('../../../assets/images/bg-header.png');
+    background-position: right -60px;
+    background-repeat: no-repeat;
+}
+.title-header{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #09295E;
+    font-size: 50px;
+    span{
+        color:#21adcf;
+    }
+}
+.pd-top-header{
+    padding-top: 80px;
+}
+.btn-search{
+    background-color: #21ADCF;
+}
+.fa-search:before{
+    color: white!important;
+}
+.w65{
+    width: 62%;
+}
+.container-min{
+    min-height: 350px;
+}
+.padding_0{
+    padding: 0px;
+}
+.hInput{
+    height: 50px;
+}
+
+@media (max-width: 768px) { 
+    .title-header{
+        text-shadow: 2px 0px 0px rgb(255 255 255);
+        font-size: 42px;
+        text-align: center;
+    }
+ }
